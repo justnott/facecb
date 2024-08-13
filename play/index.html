@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaceCB - Home</title>
+    <link rel="stylesheet" href="css/design.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta property="og:title" content="FaceCB">
+    <meta property="og:description" content="A ROBLOX Counter-Blox: Reimagined competitive addon. Play, rank, and win.">
+    <meta property="og:url" content="https://face.csdue.it">
+</head>
+<body>
+    <div class="container">
+        <h1>Play</h1>
+        <div class="links">
+            <a href="https://face.csdue.it">home</a>
+            <a href="https://face.csdue.it/register">register</a>
+            <a href="/login">login</a>
+        </div>
+    </div>
+    <canvas id="canvas"></canvas>
+    <script src="https://face.csdue.it/js/design.js"></script>
+    <script src="https://face.csdue.it/js/animations.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginLink = document.querySelector('a[href="/register"]');
+            loginLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                window.location.href = '/reguster';
+            });
+
+            // Check if the user is logged in
+            fetch('/user')
+                .then(response => {
+                    if (response.status === 200) {
+                        window.location.href = '/play';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking login status:', error);
+                });
+        });
+    </script>
+</body>
+</html>
